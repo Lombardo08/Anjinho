@@ -1,136 +1,124 @@
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Para Meu Amor ❤️</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+  <h1>Feliz Aniversário meu ANJINHO !</h1>
+  <p>Espero que voce goste dessa Lembrança</p>
+
+  <h2>Pra você minha NAMOLADA</h2>
+  <p>Minha forma de desmonstrar como eu te amo</p>
+</header>
+
+<nav>
+  <button onclick="mostrar('inicio')">Início</button>
+  <button onclick="mostrar('mensagens')">Mensagens</button>
+  <button onclick="mostrar('historias')">Histórias</button>
+  <button onclick="mostrar('jogo')">Quiz 💖</button>
+  <button onclick="mostrar('tarefas')">SIM 💖</button>
+</nav>
+
+<!-- INICIO -->
+<section id="inicio" class="aba ativa">
+  <h2>Nosso início 💖</h2>
+  <p>Foi aqui que tudo começou...</p>
+
+  <!-- CARROSSEL LEVE -->
+  <div class="carrossel">
+    <img id="slide" src="foto1.jpg">
+  </div>
+</section>
+
+<!-- MENSAGEM (CARTA) -->
+<section id="mensagens" class="aba">
+  <h2>💌 Uma mensagem pra você</h2>
+
+  <p class="texto">
+    <!-- ESCREVE AQUI SUA MENSAGEM -->
+    Aqui você escreve um texto grande, tipo uma carta...
+    falando tudo que sente por ela ❤️
+  </p>
+</section>
+
+<!-- HISTORIAS COM VIDEO -->
+<section id="historias" class="aba">
+  <h2>Nossos momentos 📸</h2>
+
+  <video controls width="300">
+    <source src="video.mp4" type="video/mp4">
+  </video>
+</section>
+
+<!-- QUIZ -->
+<section id="jogo" class="aba">
+  <h2>Quiz sobre nós 😏</h2>
+
+  <p id="pergunta">Quem ama mais?</p>
+
+  <button onclick="responder('vc')">Você</button>
+  <button onclick="responder('eu')">Eu</button>
+
+  <p id="resultado"></p>
+</section>
+
+<!-- SIM -->
+<section id="tarefas" class="aba">
+  <h2>SIM 💖</h2>
+
+  <input type="text" id="tarefa" placeholder="Digite algo aqui...">
+  <button onclick="add()">Adicionar</button>
+
+  <ul id="lista"></ul>
+</section>
+
+<script>
+// ABAS
+function mostrar(id) {
+  document.querySelectorAll('.aba').forEach(el => el.classList.remove('ativa'));
+  document.getElementById(id).classList.add('ativa');
 }
 
-/* HEADER */
-header {
-  background: linear-gradient(135deg, #d4af37, #f5e6a8);
-  text-align: center;
-  padding: 20px;
-  color: white;
-}
+// CARROSSEL LEVE (SEM TRAVAR)
+const fotos = ["foto1.jpg", "foto2.jpg", "foto3.jpg"];
+let i = 0;
 
-/* MENU */
-nav {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-  padding: 10px;
-}
+setInterval(() => {
+  i = (i + 1) % fotos.length;
+  document.getElementById("slide").src = fotos[i];
+}, 2500);
 
-nav button {
-  padding: 12px;
-  border-radius: 10px;
-  border: 2px solid #d4af37;
-  background: white;
-  color: #d4af37;
-  font-weight: bold;
-}
+// QUIZ
+function responder(resposta) {
+  const resultado = document.getElementById("resultado");
 
-/* ABAS */
-.aba {
-  display: none;
-  padding: 20px;
-  text-align: center;
-}
-
-.ativa {
-  display: block;
-}
-
-/* CORES */
-#inicio { background: #ffffff; }
-#mensagens { background: #ffe4ec; }
-#comeco { background: #e0f7fa; }
-#historias { background: #f3e8ff; }
-#jogo { background: #e8ffe8; }
-#tarefas { background: #ffd6e0; }
-
-/* CARD */
-.card {
-  background: white;
-  padding: 15px;
-  margin: 10px auto;
-  border-radius: 10px;
-  max-width: 300px;
-}
-
-/* INPUT */
-input {
-  padding: 10px;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-}
-
-/* LISTA */
-li {
-  background: white;
-  margin: 5px auto;
-  padding: 10px;
-  border-radius: 10px;
-  max-width: 300px;
-}
-
-/* CARROSSEL */
-.carrossel-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-}
-
-.carrossel {
-  width: 260px;
-  overflow: hidden;
-}
-
-.carrossel-track {
-  display: flex;
-  transition: transform 0.5s ease;
-}
-
-.carrossel img {
-  width: 260px;
-  height: 300px;
-  object-fit: cover;
-  border-radius: 15px;
-}
-
-/* FOTO SOBREPOSTA */
-.foto-container {
-  position: relative;
-  width: 250px;
-  margin: auto;
-}
-
-.fundo {
-  width: 100%;
-  border-radius: 15px;
-}
-
-.sobre {
-  position: absolute;
-  bottom: -10px;
-  right: -10px;
-  width: 80px;
-  border-radius: 10px;
-  border: 3px solid white;
-}
-
-/* RESPONSIVO */
-@media (max-width: 600px) {
-  nav {
-    flex-direction: column;
-  }
-
-  nav button {
-    width: 90%;
-  }
-
-  .carrossel img {
-    width: 220px;
-    height: 280px;
+  if(resposta === "vc") {
+    resultado.innerText = "Acertou 😏💖";
+  } else {
+    resultado.innerText = "Errado 😄 eu amo mais!";
   }
 }
+
+// TAREFAS
+function add() {
+  let input = document.getElementById("tarefa");
+
+  if(input.value === "") return;
+
+  let li = document.createElement("li");
+  li.textContent = input.value;
+
+  document.getElementById("lista").appendChild(li);
+  input.value = "";
+}
+</script>
+
+</body>
+</html>
