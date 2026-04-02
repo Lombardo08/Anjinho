@@ -74,11 +74,25 @@ nav button {
 /* QUIZ */
 #jogo button {
   margin: 10px;
-  padding: 10px;
+  padding: 12px 20px;
   border-radius: 10px;
   border: none;
   background: #ff6f91;
   color: white;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+/* TEXTO */
+#pergunta {
+  font-size: 22px;
+  margin: 15px;
+  font-weight: bold;
+}
+
+#resultado {
+  font-size: 18px;
+  margin-top: 10px;
 }
 
 /* VIDEO */
@@ -87,7 +101,22 @@ video {
   border-radius: 15px;
 }
 
-/* ANIMAÇÃO */
+/* ANIMAÇÕES */
+.fade {
+  opacity: 0;
+  transition: 0.4s;
+}
+
+.acerto {
+  background: #4CAF50 !important;
+  transform: scale(1.1);
+}
+
+.erro {
+  background: #ff4d4d !important;
+  transform: scale(1.1);
+}
+
 .desbloqueado {
   animation: brilho 1s infinite alternate;
   background: #ff6f91 !important;
@@ -191,9 +220,26 @@ let pontos = 0;
 let desbloqueado = false;
 let corretaAtual = 0;
 
+const perguntaEl = document.getElementById("pergunta");
+const btn1 = document.getElementById("btn1");
+const btn2 = document.getElementById("btn2");
+const resultado = document.getElementById("resultado");
+const pontosEl = document.getElementById("pontos");
+
+// animação troca
+function animarTroca() {
+  perguntaEl.classList.add("fade");
+  setTimeout(() => {
+    perguntaEl.classList.remove("fade");
+  }, 400);
+}
+
 function carregarPergunta(){
   let q = quiz[atual];
-  document.getElementById("pergunta").innerText = q.pergunta;
+
+  animarTroca();
+
+  perguntaEl.innerText = q.pergunta;
 
   corretaAtual = Math.floor(Math.random()*2);
 
@@ -204,14 +250,26 @@ function carregarPergunta(){
     btn1.innerText = q.opcoes[1 - q.correta];
     btn2.innerText = q.opcoes[q.correta];
   }
+
+  resultado.innerText = "";
+}
+
+// efeito clique
+function efeitoBotao(btn, tipo) {
+  btn.classList.add(tipo);
+  setTimeout(() => {
+    btn.classList.remove(tipo);
+  }, 500);
 }
 
 function responder(escolha){
   if(escolha === corretaAtual){
     pontos++;
-    resultado.innerText = "Acertou 😏";
+    resultado.innerText = "Acertou 😏💖";
+    efeitoBotao(escolha === 0 ? btn1 : btn2, "acerto");
   } else {
     resultado.innerText = "Errou 😄";
+    efeitoBotao(escolha === 0 ? btn1 : btn2, "erro");
   }
 
   pontosEl.innerText = pontos;
@@ -219,19 +277,23 @@ function responder(escolha){
   atual++;
 
   if(atual < quiz.length){
-    setTimeout(carregarPergunta,1000);
+    setTimeout(carregarPergunta, 1200);
   } else {
-    if(pontos >= 5){
-      desbloquear();
-      resultado.innerText = "Desbloqueado 💖";
-    } else {
-      resultado.innerText = "Tente novamente 😄";
-    }
+    setTimeout(() => {
+      if(pontos >= 5){
+        desbloquear();
+        resultado.innerText = "Desbloqueado 💖";
+      } else {
+        resultado.innerText = "Tente novamente 😄";
+      }
+    }, 1200);
   }
 }
 
 function desbloquear(){
   desbloqueado = true;
+  const btnSim = document.getElementById("btnSim");
+
   btnSim.innerText = "💖 SIM 💖";
   btnSim.classList.add("desbloqueado");
   btnSim.style.opacity = "1";
