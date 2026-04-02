@@ -1,82 +1,77 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #ffffff; /* EDITAR COR PRINCIPAL */
-  text-align: center;
+  background: #fff;
 }
 
+/* HEADER */
 header {
-  background: linear-gradient(135deg, #d4af37, #f5e6a8); /* EDITAR CORES */
-  color: white;
+  background: linear-gradient(135deg, #d4af37, #f5e6a8);
+  text-align: center;
   padding: 20px;
-}
-
-nav {
-  margin: 10px;
-}
-
-button {
-  background: #d4af37; /* EDITAR COR BOTÃO */
   color: white;
-  border: none;
+}
+
+/* MENU */
+nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
   padding: 10px;
-  margin: 5px;
+}
+
+nav button {
+  padding: 12px 18px;
   border-radius: 10px;
+  border: 2px solid #d4af37;
+  background: white;
+  color: #d4af37;
+  font-weight: bold;
   cursor: pointer;
 }
 
-button:hover {
-  background: #b8962e; /* EDITAR HOVER */
+nav button:hover {
+  background: #d4af37;
+  color: white;
 }
 
+/* ABAS */
 .aba {
   display: none;
   padding: 20px;
+  text-align: center;
 }
 
 .ativa {
   display: block;
 }
 
-/* CORES DAS ABAS (PODE EDITAR CADA UMA) */
-#inicio {
-  background: #ffffff;
-}
+/* CORES DAS ABAS */
+#inicio { background: #ffffff; }
+#mensagens { background: #ffe4ec; }
+#tarefas { background: #ffe5e5; }
+#comeco { background: #e0f7fa; }
+#historias { background: #f3e8ff; }
+#direitos { background: #fff3cd; }
 
-#mensagens {
-  background: #ffe4ec; /* rosa bebê */
-}
-
-#tarefas {
-  background: #ffe5e5; /* vermelho suave */
-}
-
-#comeco {
-  background: #e0f7fa; /* azul claro */
-}
-
-#historias {
-  background: #f3e8ff; /* lilás */
-}
-
-#direitos {
-  background: #fff3cd; /* amarelo suave */
-}
-
+/* CARDS */
 .card {
   background: white;
   margin: 10px auto;
   padding: 15px;
-  border-radius: 10px;
-  width: 250px;
+  border-radius: 12px;
+  max-width: 300px;
 }
 
+/* INPUT */
 input {
   padding: 10px;
   border-radius: 10px;
-  border: none;
+  border: 1px solid #ccc;
 }
 
+/* LISTA */
 ul {
   list-style: none;
   padding: 0;
@@ -84,7 +79,39 @@ ul {
 
 li {
   background: white;
-  margin: 5px;
+  margin: 5px auto;
   padding: 10px;
   border-radius: 10px;
+  max-width: 300px;
+}
+
+/* CARROSSEL */
+.carrossel {
+  display: flex;
+  overflow-x: auto;
+  gap: 10px;
+  margin-top: 20px;
+  padding: 10px;
+}
+
+.carrossel img {
+  width: 250px;
+  border-radius: 15px;
+}
+
+/* RESPONSIVO */
+@media (max-width: 600px) {
+
+  nav {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav button {
+    width: 90%;
+  }
+
+  .carrossel img {
+    width: 80%;
+  }
 }
