@@ -21,9 +21,8 @@
 <nav>
   <button onclick="mostrar('inicio')">Início</button>
   <button onclick="mostrar('mensagens')">Mensagens</button>
-  <button onclick="mostrar('comeco')">Começo</button>
   <button onclick="mostrar('historias')">Histórias</button>
-  <button onclick="mostrar('jogo')">Mini Game</button>
+  <button onclick="mostrar('jogo')">Quiz 💖</button>
   <button onclick="mostrar('tarefas')">SIM 💖</button>
 </nav>
 
@@ -32,53 +31,42 @@
   <h2>Nosso início 💖</h2>
   <p>Foi aqui que tudo começou...</p>
 
-  <div class="carrossel-container">
-    <button onclick="voltar()">⬅</button>
-
-    <div class="carrossel">
-      <div class="carrossel-track" id="carrossel">
-        <img src="foto1.jpg">
-        <img src="foto2.jpg">
-        <img src="foto3.jpg">
-      </div>
-    </div>
-
-    <button onclick="avancar()">➡</button>
+  <!-- CARROSSEL LEVE -->
+  <div class="carrossel">
+    <img id="slide" src="foto1.jpg">
   </div>
 </section>
 
-<!-- MENSAGENS -->
+<!-- MENSAGEM (CARTA) -->
 <section id="mensagens" class="aba">
-  <div class="card">Você é a melhor parte da minha vida ❤️</div>
-  <div class="card">Eu te amo muito 💖</div>
-  <div class="card">Quero passar minha vida com você 💕</div>
+  <h2>💌 Uma mensagem pra você</h2>
+
+  <p class="texto">
+    <!-- ESCREVE AQUI SUA MENSAGEM -->
+    Aqui você escreve um texto grande, tipo uma carta...
+    falando tudo que sente por ela ❤️
+  </p>
 </section>
 
-<!-- COMEÇO -->
-<section id="comeco" class="aba">
-  <h2>Como tudo começou 💕</h2>
-  <p>Conte aqui a história de vocês...</p>
-
-  <!-- FOTO SOBREPOSTA -->
-  <div class="foto-container">
-    <img src="foto1.jpg" class="fundo">
-    <img src="foto2.jpg" class="sobre">
-  </div>
-</section>
-
-<!-- HISTORIAS (COM VIDEO) -->
+<!-- HISTORIAS COM VIDEO -->
 <section id="historias" class="aba">
-  <h2>Nossas histórias 📖</h2>
+  <h2>Nossos momentos 📸</h2>
 
   <video controls width="300">
     <source src="video.mp4" type="video/mp4">
   </video>
 </section>
 
-<!-- MINI GAME -->
+<!-- QUIZ -->
 <section id="jogo" class="aba">
-  <h2>Clique no botão 😄</h2>
-  <button id="btn" onmouseover="fugir()">Clique aqui</button>
+  <h2>Quiz sobre nós 😏</h2>
+
+  <p id="pergunta">Quem ama mais?</p>
+
+  <button onclick="responder('vc')">Você</button>
+  <button onclick="responder('eu')">Eu</button>
+
+  <p id="resultado"></p>
 </section>
 
 <!-- SIM -->
@@ -98,6 +86,26 @@ function mostrar(id) {
   document.getElementById(id).classList.add('ativa');
 }
 
+// CARROSSEL LEVE (SEM TRAVAR)
+const fotos = ["foto1.jpg", "foto2.jpg", "foto3.jpg"];
+let i = 0;
+
+setInterval(() => {
+  i = (i + 1) % fotos.length;
+  document.getElementById("slide").src = fotos[i];
+}, 2500);
+
+// QUIZ
+function responder(resposta) {
+  const resultado = document.getElementById("resultado");
+
+  if(resposta === "vc") {
+    resultado.innerText = "Acertou 😏💖";
+  } else {
+    resultado.innerText = "Errado 😄 eu amo mais!";
+  }
+}
+
 // TAREFAS
 function add() {
   let input = document.getElementById("tarefa");
@@ -109,36 +117,6 @@ function add() {
 
   document.getElementById("lista").appendChild(li);
   input.value = "";
-}
-
-// CARROSSEL
-let index = 0;
-
-function atualizar() {
-  const carrossel = document.getElementById("carrossel");
-  carrossel.style.transform = `translateX(-${index * 260}px)`;
-}
-
-function avancar() {
-  const total = document.querySelectorAll("#carrossel img").length;
-  index = (index + 1) % total;
-  atualizar();
-}
-
-function voltar() {
-  const total = document.querySelectorAll("#carrossel img").length;
-  index = (index - 1 + total) % total;
-  atualizar();
-}
-
-setInterval(avancar, 3000);
-
-// MINI GAME
-function fugir() {
-  const btn = document.getElementById("btn");
-  btn.style.position = "absolute";
-  btn.style.top = Math.random() * 80 + "%";
-  btn.style.left = Math.random() * 80 + "%";
 }
 </script>
 
