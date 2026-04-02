@@ -31,28 +31,25 @@
   <h2>Nosso início 💖</h2>
   <p>Foi aqui que tudo começou...</p>
 
-  <!-- CARROSSEL LEVE -->
   <div class="carrossel">
     <img id="slide" src="foto1.jpg">
   </div>
 </section>
 
-<!-- MENSAGEM (CARTA) -->
+<!-- MENSAGEM -->
 <section id="mensagens" class="aba">
   <h2>💌 Uma mensagem pra você</h2>
 
   <p class="texto">
-    <!-- ESCREVE AQUI SUA MENSAGEM -->
-    Aqui você escreve um texto grande, tipo uma carta...
-    falando tudo que sente por ela ❤️
+    Aqui você escreve sua carta ❤️
   </p>
 </section>
 
-<!-- HISTORIAS COM VIDEO -->
+<!-- VIDEO -->
 <section id="historias" class="aba">
   <h2>Nossos momentos 📸</h2>
 
-  <video controls width="300">
+  <video controls>
     <source src="video.mp4" type="video/mp4">
   </video>
 </section>
@@ -86,7 +83,7 @@ function mostrar(id) {
   document.getElementById(id).classList.add('ativa');
 }
 
-// CARROSSEL LEVE (SEM TRAVAR)
+// CARROSSEL LEVE
 const fotos = ["foto1.jpg", "foto2.jpg", "foto3.jpg"];
 let i = 0;
 
@@ -96,17 +93,17 @@ setInterval(() => {
 }, 2500);
 
 // QUIZ
-function responder(resposta) {
-  const resultado = document.getElementById("resultado");
+function responder(r) {
+  let res = document.getElementById("resultado");
 
-  if(resposta === "vc") {
-    resultado.innerText = "Acertou 😏💖";
+  if(r === "vc") {
+    res.innerText = "Acertou 😏💖";
   } else {
-    resultado.innerText = "Errado 😄 eu amo mais!";
+    res.innerText = "Errado 😄 eu amo mais!";
   }
 }
 
-// TAREFAS
+// LISTA
 function add() {
   let input = document.getElementById("tarefa");
 
