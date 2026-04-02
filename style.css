@@ -7,7 +7,7 @@
 
 body {
   font-family: Arial, sans-serif;
-  background: #fff;
+  background: white;
 }
 
 /* HEADER */
@@ -21,41 +21,48 @@ header {
 /* MENU */
 nav {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 10px;
   padding: 10px;
 }
 
 nav button {
-  padding: 10px 15px;
-  border-radius: 10px;
-  border: 2px solid #d4af37;
+  padding: 12px 18px;
+  border-radius: 20px;
+  border: 1px solid #d4af37;
   background: white;
   color: #d4af37;
   font-weight: bold;
   cursor: pointer;
+  transition: 0.3s;
+}
+
+nav button:hover {
+  background: #d4af37;
+  color: white;
 }
 
 /* ABAS */
 .aba {
   display: none;
-  padding: 20px;
+  padding: 25px;
   text-align: center;
+  min-height: 70vh;
 }
 
 .ativa {
   display: block;
 }
 
-/* CORES DAS ABAS */
+/* CORES */
 #inicio { background: #ffffff; }
 #mensagens { background: #ffe4ec; }
 #historias { background: #f3e8ff; }
 #jogo { background: #e8ffe8; }
 #tarefas { background: #ffd6e0; }
 
-/* TEXTO (MENSAGEM) */
+/* TEXTO */
 .texto {
   max-width: 600px;
   margin: 20px auto;
@@ -63,21 +70,27 @@ nav button {
   line-height: 1.6;
 }
 
-/* CARROSSEL SIMPLES */
-.carrossel {
-  margin-top: 20px;
-}
-
+/* CARROSSEL */
 .carrossel img {
-  width: 250px;
+  width: 260px;
   max-width: 90%;
   border-radius: 15px;
+  margin-top: 20px;
+  transition: 0.5s;
+}
+
+/* VIDEO */
+video {
+  width: 300px;
+  max-width: 90%;
+  border-radius: 15px;
+  margin-top: 20px;
 }
 
 /* QUIZ */
 #jogo button {
   margin: 10px;
-  padding: 10px;
+  padding: 12px;
   border-radius: 10px;
   border: none;
   background: #ff6f91;
@@ -94,11 +107,6 @@ input {
 }
 
 /* LISTA */
-ul {
-  list-style: none;
-  padding: 0;
-}
-
 li {
   background: white;
   margin: 5px auto;
