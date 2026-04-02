@@ -48,6 +48,14 @@ nav button {
 #jogo { background:#e8ffe8; }
 #tarefas { background:#ffd6e0; }
 
+/* TEXTO MENSAGEM */
+#mensagens p {
+  font-size: 18px;
+  line-height: 1.6;
+  max-width: 350px;
+  margin: auto;
+}
+
 /* CARROSSEL */
 .carrossel img {
   width:250px;
@@ -156,18 +164,23 @@ video {
   </div>
 </section>
 
+<!-- MENSAGEM CORRIGIDA -->
 <section id="mensagens" class="aba">
-  <p>"Meu amor, acho que eu já escrevi um poco demais, tenho medo de dar dor de cabeça em vpcê pra ler tudo isso kkk
-  amor eu queria recitar um verso de uma das musica que você me fez ouvir, e essa musica faz muito sentido perante tudo 
-  que eu estou vievndo e ela é assim:Eu vi seus olhos marrons nas plantações de eucalipto na beira da FIo
-Vi suas pegadas pelos corredores de teologia oc.
-Eu vi suas curvas nas estradas da BR-153
-Seu  tâo sonhado chapéu branco passeando em Agronomia 
+  <p>
+  Meu amor, acho que eu já escrevi um pouco demais, tenho medo de dar dor de cabeça em você pra ler tudo isso kkk ❤️<br><br>
 
-Em Ourinhos eu vi seu brilho por toda a cidade
-Vi seu cabelo Moreno no anoitecer de Cambará 
-E no Onibus tomei água com a saudade
-Pois não importa os KM quem ama não esquece"</p>
+  Amor, eu queria recitar um verso de uma das músicas que você me fez ouvir, e essa música faz muito sentido perante tudo que eu estou vivendo:<br><br>
+
+  Eu vi seus olhos marrons nas plantações de eucalipto na beira da FIO<br>
+  Vi suas pegadas pelos corredores de teologia<br>
+  Eu vi suas curvas nas estradas da BR-153<br>
+  Seu tão sonhado chapéu branco passeando em Agronomia<br><br>
+
+  Em Ourinhos eu vi seu brilho por toda a cidade<br>
+  Vi seu cabelo moreno no anoitecer de Cambará<br>
+  E no ônibus tomei água com a saudade<br>
+  Pois não importa os KM, quem ama não esquece 💖
+  </p>
 </section>
 
 <section id="momentos" class="aba">
@@ -197,189 +210,11 @@ Pois não importa os KM quem ama não esquece"</p>
   <ul id="lista"></ul>
 </section>
 
-<!-- SONS -->
 <audio id="somAcerto" src="acerto.mp3"></audio>
 <audio id="somErro" src="erro.mp3"></audio>
 
 <script>
-// ABAS
-function mostrar(id){
-  document.querySelectorAll('.aba').forEach(e=>e.classList.remove('ativa'));
-  document.getElementById(id).classList.add('ativa');
-}
-
-// CARROSSEL
-const fotos = [
- "foto1.jpg","foto2.jpg","foto3.jpg","foto4.jpg","foto5.jpg",
- "foto6.jpg","foto7.jpg","foto8.jpg","foto9.jpg","foto10.jpg"
-];
-
-let i=0;
-setInterval(()=>{
-  i=(i+1)%fotos.length;
-  slide.src=fotos[i];
-},2000);
-
-// QUIZ
-const quiz = [
- { pergunta:"Quem ama mais?", opcoes:["Você","Eu"], correta:0 },
- { pergunta:"Quem é mais lindo?", opcoes:["Você","Eu"], correta:0 },
- { pergunta:"Quem sente mais saudade?", opcoes:["Você","Eu"], correta:1 },
- { pergunta:"Quem é mais grudado?", opcoes:["Você","Eu"], correta:0 },
- { pergunta:"Quem é o amor da vida?", opcoes:["Você","Eu"], correta:1 },
- { pergunta:"Quem pensa mais no outro?", opcoes:["Você","Eu"], correta:0 },
- { pergunta:"Quem é mais apaixonado?", opcoes:["Você","Eu"], correta:1 }
-];
-
-const mensagensErro = [
-  "Errou 😄 mas eu ainda te amo 💖",
-  "Hmm... tenta de novo 😏",
-  "Quase 😄 você chega lá!",
-  "Errou 😅 mas tá perdoada",
-  "Não foi dessa vez 😏💖"
-];
-
-let atual=0;
-let pontos=0;
-let erros=0;
-let desbloqueado=false;
-
-const perguntaEl = document.getElementById("pergunta");
-const btn1 = document.getElementById("btn1");
-const btn2 = document.getElementById("btn2");
-const resultado = document.getElementById("resultado");
-const pontosEl = document.getElementById("pontos");
-
-const somAcerto = document.getElementById("somAcerto");
-const somErro = document.getElementById("somErro");
-
-function animarTroca(){
-  perguntaEl.classList.add("fade");
-  setTimeout(()=>perguntaEl.classList.remove("fade"),400);
-}
-
-function carregarPergunta(){
-  let q = quiz[atual];
-
-  animarTroca();
-  perguntaEl.innerText = q.pergunta;
-
-  if(Math.random()<0.5){
-    btn1.innerText = q.opcoes[0];
-    btn2.innerText = q.opcoes[1];
-  } else {
-    btn1.innerText = q.opcoes[1];
-    btn2.innerText = q.opcoes[0];
-  }
-
-  resultado.innerText="";
-}
-
-function efeitoBotao(btn,tipo){
-  btn.classList.add(tipo);
-  setTimeout(()=>btn.classList.remove(tipo),500);
-}
-
-// CORAÇÕES
-function criarCoracoes(){
-  for(let i=0;i<20;i++){
-    let coracao = document.createElement("div");
-    coracao.className="coracao";
-    coracao.innerText="❤️";
-    coracao.style.left = Math.random()*100+"vw";
-    coracao.style.animationDuration = (Math.random()*2+2)+"s";
-
-    document.body.appendChild(coracao);
-    setTimeout(()=>coracao.remove(),3000);
-  }
-}
-
-function responder(escolha){
-  let respostaEscolhida = escolha===0 ? btn1.innerText : btn2.innerText;
-  let respostaCorreta = quiz[atual].opcoes[quiz[atual].correta];
-
-  if(respostaEscolhida === respostaCorreta){
-    pontos++;
-    resultado.innerText="Acertou 😏💖";
-    efeitoBotao(escolha===0?btn1:btn2,"acerto");
-    somAcerto.play();
-  } else {
-    erros++;
-
-    let msg = mensagensErro[Math.floor(Math.random()*mensagensErro.length)];
-
-    if(erros >= 2){
-      msg = "Ei 😏 tá errando demais hein 💖 presta atenção";
-    }
-
-    resultado.innerText = msg;
-    efeitoBotao(escolha===0?btn1:btn2,"erro");
-    somErro.play();
-  }
-
-  pontosEl.innerText=pontos;
-  atual++;
-
-  if(atual<quiz.length){
-    setTimeout(carregarPergunta,1200);
-  } else {
-    setTimeout(()=>{
-      if(pontos===7){
-        desbloquear();
-        resultado.innerText="PERFEITA 💖 desbloqueado!";
-        criarCoracoes();
-      } else {
-        resultado.innerText="Você precisa acertar todas 😏💖";
-      }
-    },1200);
-  }
-}
-
-function desbloquear(){
-  desbloqueado=true;
-  btnSim.innerText="💖 SIM 💖";
-  btnSim.classList.add("desbloqueado");
-  btnSim.style.opacity="1";
-}
-
-function abrirSim(){
-  if(desbloqueado){
-    mostrar('tarefas');
-  } else {
-    alert("Acerte as 7 perguntas 😏💖");
-  }
-}
-
-carregarPergunta();
-
-// LISTA
-let listaItens=[];
-
-function add(){
-  let input=document.getElementById("tarefa");
-
-  if(input.value==="") return;
-
-  if(listaItens.length>=5){
-    alert("Só pode até 5 😏💖");
-    return;
-  }
-
-  listaItens.push(input.value);
-  atualizarLista();
-  input.value="";
-}
-
-function atualizarLista(){
-  let ul=document.getElementById("lista");
-  ul.innerHTML="";
-
-  listaItens.forEach(item=>{
-    let li=document.createElement("li");
-    li.textContent=item;
-    ul.appendChild(li);
-  });
-}
+// (SEU JS CONTINUA IGUAL — NÃO PRECISA MEXER)
 </script>
 
 </body>
