@@ -1,65 +1,113 @@
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: linear-gradient(120deg, #ff9a9e, #fad0c4);
-  text-align: center;
+  font-family: 'Segoe UI', sans-serif;
+  background: #ffffff;
+  color: #333;
 }
 
+/* HEADER */
 header {
-  background: #ff6f91;
+  background: linear-gradient(135deg, #d4af37, #f5e6a8);
   color: white;
-  padding: 20px;
+  padding: 25px;
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
 }
 
+/* MENU */
 nav {
-  margin: 10px;
+  display: flex;
+  justify-content: center;
+  background: #fff;
+  padding: 10px;
+  border-bottom: 2px solid #d4af37;
 }
 
-button {
-  background: #ff6f91;
-  color: white;
-  border: none;
-  padding: 10px 15px;
+nav button {
+  background: white;
+  border: 1px solid #d4af37;
+  color: #d4af37;
+  padding: 10px 20px;
   margin: 5px;
-  border-radius: 10px;
+  border-radius: 20px;
   cursor: pointer;
+  transition: 0.3s;
 }
 
-button:hover {
-  background: #ff3b6f;
+nav button:hover {
+  background: #d4af37;
+  color: white;
 }
 
+/* ABAS */
 .aba {
   display: none;
-  padding: 20px;
+  padding: 30px;
+  text-align: center;
+  min-height: 70vh;
 }
 
 .ativa {
   display: block;
 }
 
+/* CORES DIFERENTES POR ABA */
+#inicio {
+  background: #fff;
+}
+
+#mensagens {
+  background: #ffe4ec; /* rosa bebê */
+}
+
+#tarefas {
+  background: #ffe5e5; /* vermelho bem suave */
+}
+
+#especial {
+  background: #f3e8ff; /* lilás */
+}
+
+/* CARDS */
 .card {
   background: white;
   margin: 10px auto;
-  padding: 15px;
-  border-radius: 10px;
-  width: 250px;
+  padding: 20px;
+  border-radius: 15px;
+  width: 280px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
+/* BOTÕES */
+button {
+  font-size: 14px;
+}
+
+/* INPUT */
 input {
   padding: 10px;
   border-radius: 10px;
-  border: none;
+  border: 1px solid #ccc;
+  margin: 10px;
 }
 
+/* LISTA */
 ul {
   list-style: none;
   padding: 0;
 }
 
 li {
-  background: #ffe5ec;
-  margin: 5px;
+  background: white;
+  margin: 5px auto;
   padding: 10px;
   border-radius: 10px;
+  width: 250px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* DETALHE ROMÂNTICO */
+h1, h2 {
+  color: #d4af37;
 }
