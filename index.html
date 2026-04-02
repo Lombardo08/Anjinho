@@ -5,7 +5,132 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Para Meu Amor ❤️</title>
-<link rel="stylesheet" href="style.css">
+
+<style>
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: white;
+}
+
+/* HEADER */
+header {
+  background: linear-gradient(135deg, #d4af37, #f5e6a8);
+  text-align: center;
+  padding: 30px 15px;
+  color: white;
+}
+
+/* MENU */
+nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 15px;
+}
+
+nav button {
+  padding: 12px 18px;
+  border-radius: 25px;
+  border: 2px solid #d4af37;
+  background: white;
+  color: #d4af37;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#btnSim {
+  opacity: 0.6;
+}
+
+/* ABAS */
+.aba {
+  display: none;
+  padding: 25px;
+  text-align: center;
+  min-height: 70vh;
+}
+
+.ativa {
+  display: block;
+}
+
+/* CORES */
+#inicio { background: #ffffff; }
+#mensagens { background: #ffe4ec; }
+#momentos { background: #f3e8ff; }
+#jogo { background: #e8ffe8; }
+#tarefas { background: #ffd6e0; }
+
+/* TEXTO */
+.texto {
+  max-width: 600px;
+  margin: 20px auto;
+  font-size: 18px;
+}
+
+/* CARROSSEL */
+.carrossel img {
+  width: 260px;
+  max-width: 90%;
+  border-radius: 20px;
+  margin-top: 20px;
+}
+
+/* VIDEO */
+video {
+  width: 320px;
+  max-width: 90%;
+  border-radius: 20px;
+  margin-top: 20px;
+}
+
+/* QUIZ */
+#jogo button {
+  margin: 10px;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  background: #ff6f91;
+  color: white;
+}
+
+/* INPUT */
+input {
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+/* LISTA */
+li {
+  background: white;
+  margin: 5px auto;
+  padding: 10px;
+  border-radius: 10px;
+  max-width: 300px;
+}
+
+/* RESPONSIVO */
+@media (max-width: 600px) {
+  nav {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav button {
+    width: 90%;
+  }
+}
+</style>
+
 </head>
 
 <body>
@@ -23,7 +148,7 @@
   <button onclick="mostrar('mensagens')">Mensagens</button>
   <button onclick="mostrar('momentos')">Momentos</button>
   <button onclick="mostrar('jogo')">Quiz 💖</button>
-  <button onclick="mostrar('tarefas')">SIM 💖</button>
+  <button id="btnSim" onclick="abrirSim()">🔒 SIM 💖</button>
 </nav>
 
 <!-- INICIO -->
@@ -41,8 +166,7 @@
   <h2>💌 Uma mensagem pra você</h2>
 
   <p class="texto">
-    <!-- ESCREVA SUA MENSAGEM AQUI -->
-    Você é a melhor coisa da minha vida ❤️
+    Escreva aqui sua mensagem ❤️
   </p>
 </section>
 
@@ -51,13 +175,15 @@
   <h2>Nossos momentos 📸</h2>
 
   <video controls autoplay muted loop>
-    <source src="vídeo.mp4" type="video/mp4">
+    <source src="video.mp4" type="video/mp4">
   </video>
 </section>
 
 <!-- QUIZ -->
 <section id="jogo" class="aba">
   <h2>Quiz sobre nós 😏</h2>
+
+  <p>Pontuação: <span id="pontos">0</span>/7</p>
 
   <p id="pergunta"></p>
 
@@ -84,7 +210,7 @@ function mostrar(id) {
   document.getElementById(id).classList.add('ativa');
 }
 
-// CARROSSEL (10 FOTOS)
+// CARROSSEL
 const fotos = [
   "foto1.jpg","foto2.jpg","foto3.jpg","foto4.jpg","foto5.jpg",
   "foto6.jpg","foto7.jpg","foto8.jpg","foto9.jpg","foto10.jpg"
@@ -97,30 +223,36 @@ setInterval(() => {
   document.getElementById("slide").src = fotos[i];
 }, 2000);
 
-// QUIZ (EDITÁVEL)
+// QUIZ + PONTUAÇÃO
 const quiz = [
   { pergunta: "Quem ama mais?", opcoes: ["Você", "Eu"], correta: 0 },
   { pergunta: "Quem é mais lindo?", opcoes: ["Você", "Eu"], correta: 0 },
   { pergunta: "Quem sente mais saudade?", opcoes: ["Você", "Eu"], correta: 0 },
   { pergunta: "Quem é mais grudado?", opcoes: ["Você", "Eu"], correta: 0 },
-  { pergunta: "Quem é o amor da vida?", opcoes: ["Você", "Eu"], correta: 0 }
+  { pergunta: "Quem é o amor da vida?", opcoes: ["Você", "Eu"], correta: 0 },
+  { pergunta: "Quem pensa mais no outro?", opcoes: ["Você", "Eu"], correta: 0 },
+  { pergunta: "Quem é mais apaixonado?", opcoes: ["Você", "Eu"], correta: 0 }
 ];
 
 let atual = 0;
+let pontos = 0;
+let desbloqueado = false;
 
 function carregarPergunta() {
   document.getElementById("pergunta").innerText = quiz[atual].pergunta;
   document.getElementById("btn1").innerText = quiz[atual].opcoes[0];
   document.getElementById("btn2").innerText = quiz[atual].opcoes[1];
-  document.getElementById("resultado").innerText = "";
 }
 
 function responder(escolha) {
   if(escolha === quiz[atual].correta) {
+    pontos++;
     document.getElementById("resultado").innerText = "Acertou 😏💖";
   } else {
     document.getElementById("resultado").innerText = "Errou 😄";
   }
+
+  document.getElementById("pontos").innerText = pontos;
 
   atual++;
 
@@ -128,15 +260,36 @@ function responder(escolha) {
     setTimeout(carregarPergunta, 1500);
   } else {
     setTimeout(() => {
-      document.getElementById("pergunta").innerText = "Fim 😍";
-      document.getElementById("resultado").innerText = "Você é perfeita ❤️";
+      if(pontos >= 5) {
+        desbloquearSim();
+        document.getElementById("resultado").innerText = "Desbloqueado 💖";
+      } else {
+        document.getElementById("resultado").innerText = "Tente novamente 😄";
+      }
     }, 1500);
+  }
+}
+
+function desbloquearSim() {
+  desbloqueado = true;
+  const btn = document.getElementById("btnSim");
+  btn.innerText = "SIM 💖";
+  btn.style.opacity = "1";
+  btn.style.background = "#ff6f91";
+  btn.style.color = "white";
+}
+
+function abrirSim() {
+  if(desbloqueado) {
+    mostrar('tarefas');
+  } else {
+    alert("Acerte pelo menos 5 perguntas 😏");
   }
 }
 
 carregarPergunta();
 
-// LISTA (SIM)
+// LISTA
 function add() {
   let input = document.getElementById("tarefa");
 
