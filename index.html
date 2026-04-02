@@ -116,6 +116,22 @@ video {
   from { box-shadow:0 0 5px #ff6f91; }
   to { box-shadow:0 0 20px #ff6f91; }
 }
+
+/* CORAÇÕES */
+.coracao {
+  position: fixed;
+  top: -10px;
+  color: red;
+  font-size: 20px;
+  animation: cair 3s linear forwards;
+}
+
+@keyframes cair {
+  to {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
 </style>
 </head>
 
@@ -171,6 +187,10 @@ video {
   <ul id="lista"></ul>
 </section>
 
+<!-- SONS -->
+<audio id="somAcerto" src="acerto.mp3"></audio>
+<audio id="somErro" src="erro.mp3"></audio>
+
 <script>
 // ABAS
 function mostrar(id){
@@ -211,6 +231,7 @@ const mensagensErro = [
 
 let atual=0;
 let pontos=0;
+let erros=0;
 let desbloqueado=false;
 
 const perguntaEl = document.getElementById("pergunta");
@@ -219,7 +240,9 @@ const btn2 = document.getElementById("btn2");
 const resultado = document.getElementById("resultado");
 const pontosEl = document.getElementById("pontos");
 
-// animação
+const somAcerto = document.getElementById("somAcerto");
+const somErro = document.getElementById("somErro");
+
 function animarTroca(){
   perguntaEl.classList.add("fade");
   setTimeout(()=>perguntaEl.classList.remove("fade"),400);
@@ -247,7 +270,20 @@ function efeitoBotao(btn,tipo){
   setTimeout(()=>btn.classList.remove(tipo),500);
 }
 
-// RESPOSTA PELO TEXTO
+// CORAÇÕES
+function criarCoracoes(){
+  for(let i=0;i<20;i++){
+    let coracao = document.createElement("div");
+    coracao.className="coracao";
+    coracao.innerText="❤️";
+    coracao.style.left = Math.random()*100+"vw";
+    coracao.style.animationDuration = (Math.random()*2+2)+"s";
+
+    document.body.appendChild(coracao);
+    setTimeout(()=>coracao.remove(),3000);
+  }
+}
+
 function responder(escolha){
   let respostaEscolhida = escolha===0 ? btn1.innerText : btn2.innerText;
   let respostaCorreta = quiz[atual].opcoes[quiz[atual].correta];
@@ -256,10 +292,19 @@ function responder(escolha){
     pontos++;
     resultado.innerText="Acertou 😏💖";
     efeitoBotao(escolha===0?btn1:btn2,"acerto");
+    somAcerto.play();
   } else {
+    erros++;
+
     let msg = mensagensErro[Math.floor(Math.random()*mensagensErro.length)];
+
+    if(erros >= 2){
+      msg = "Ei 😏 tá errando demais hein 💖 presta atenção";
+    }
+
     resultado.innerText = msg;
     efeitoBotao(escolha===0?btn1:btn2,"erro");
+    somErro.play();
   }
 
   pontosEl.innerText=pontos;
@@ -272,6 +317,7 @@ function responder(escolha){
       if(pontos===7){
         desbloquear();
         resultado.innerText="PERFEITA 💖 desbloqueado!";
+        criarCoracoes();
       } else {
         resultado.innerText="Você precisa acertar todas 😏💖";
       }
