@@ -201,6 +201,14 @@ const quiz = [
  { pergunta:"Quem é mais apaixonado?", opcoes:["Você","Eu"], correta:1 }
 ];
 
+const mensagensErro = [
+  "Errou 😄 mas eu ainda te amo 💖",
+  "Hmm... tenta de novo 😏",
+  "Quase 😄 você chega lá!",
+  "Errou 😅 mas tá perdoada",
+  "Não foi dessa vez 😏💖"
+];
+
 let atual=0;
 let pontos=0;
 let desbloqueado=false;
@@ -217,14 +225,12 @@ function animarTroca(){
   setTimeout(()=>perguntaEl.classList.remove("fade"),400);
 }
 
-// carregar pergunta
 function carregarPergunta(){
   let q = quiz[atual];
 
   animarTroca();
   perguntaEl.innerText = q.pergunta;
 
-  // embaralha VISUAL apenas
   if(Math.random()<0.5){
     btn1.innerText = q.opcoes[0];
     btn2.innerText = q.opcoes[1];
@@ -236,13 +242,12 @@ function carregarPergunta(){
   resultado.innerText="";
 }
 
-// efeito botão
 function efeitoBotao(btn,tipo){
   btn.classList.add(tipo);
   setTimeout(()=>btn.classList.remove(tipo),500);
 }
 
-// RESPOSTA BASEADA NO TEXTO
+// RESPOSTA PELO TEXTO
 function responder(escolha){
   let respostaEscolhida = escolha===0 ? btn1.innerText : btn2.innerText;
   let respostaCorreta = quiz[atual].opcoes[quiz[atual].correta];
@@ -252,7 +257,8 @@ function responder(escolha){
     resultado.innerText="Acertou 😏💖";
     efeitoBotao(escolha===0?btn1:btn2,"acerto");
   } else {
-    resultado.innerText="Errou 😄";
+    let msg = mensagensErro[Math.floor(Math.random()*mensagensErro.length)];
+    resultado.innerText = msg;
     efeitoBotao(escolha===0?btn1:btn2,"erro");
   }
 
@@ -263,11 +269,11 @@ function responder(escolha){
     setTimeout(carregarPergunta,1200);
   } else {
     setTimeout(()=>{
-      if(pontos>=5){
+      if(pontos===7){
         desbloquear();
-        resultado.innerText="Desbloqueado 💖";
+        resultado.innerText="PERFEITA 💖 desbloqueado!";
       } else {
-        resultado.innerText="Tente novamente 😄";
+        resultado.innerText="Você precisa acertar todas 😏💖";
       }
     },1200);
   }
@@ -284,7 +290,7 @@ function abrirSim(){
   if(desbloqueado){
     mostrar('tarefas');
   } else {
-    alert("Acerte 5 perguntas 😏");
+    alert("Acerte as 7 perguntas 😏💖");
   }
 }
 
