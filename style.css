@@ -1,60 +1,46 @@
 body {
   margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: #ffffff;
-  color: #333;
-}
-
-/* HEADER */
-header {
-  background: linear-gradient(135deg, #d4af37, #f5e6a8);
-  color: white;
-  padding: 25px;
+  font-family: Arial, sans-serif;
+  background: #ffffff; /* EDITAR COR PRINCIPAL */
   text-align: center;
-  font-size: 22px;
-  font-weight: bold;
 }
 
-/* MENU */
-nav {
-  display: flex;
-  justify-content: center;
-  background: #fff;
-  padding: 10px;
-  border-bottom: 2px solid #d4af37;
-}
-
-nav button {
-  background: white;
-  border: 1px solid #d4af37;
-  color: #d4af37;
-  padding: 10px 20px;
-  margin: 5px;
-  border-radius: 20px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-nav button:hover {
-  background: #d4af37;
+header {
+  background: linear-gradient(135deg, #d4af37, #f5e6a8); /* EDITAR CORES */
   color: white;
+  padding: 20px;
 }
 
-/* ABAS */
+nav {
+  margin: 10px;
+}
+
+button {
+  background: #d4af37; /* EDITAR COR BOTÃO */
+  color: white;
+  border: none;
+  padding: 10px;
+  margin: 5px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #b8962e; /* EDITAR HOVER */
+}
+
 .aba {
   display: none;
-  padding: 30px;
-  text-align: center;
-  min-height: 70vh;
+  padding: 20px;
 }
 
 .ativa {
   display: block;
 }
 
-/* CORES DIFERENTES POR ABA */
+/* CORES DAS ABAS (PODE EDITAR CADA UMA) */
 #inicio {
-  background: #fff;
+  background: #ffffff;
 }
 
 #mensagens {
@@ -62,37 +48,35 @@ nav button:hover {
 }
 
 #tarefas {
-  background: #ffe5e5; /* vermelho bem suave */
+  background: #ffe5e5; /* vermelho suave */
 }
 
-#especial {
+#comeco {
+  background: #e0f7fa; /* azul claro */
+}
+
+#historias {
   background: #f3e8ff; /* lilás */
 }
 
-/* CARDS */
+#direitos {
+  background: #fff3cd; /* amarelo suave */
+}
+
 .card {
   background: white;
   margin: 10px auto;
-  padding: 20px;
-  border-radius: 15px;
-  width: 280px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  padding: 15px;
+  border-radius: 10px;
+  width: 250px;
 }
 
-/* BOTÕES */
-button {
-  font-size: 14px;
-}
-
-/* INPUT */
 input {
   padding: 10px;
   border-radius: 10px;
-  border: 1px solid #ccc;
-  margin: 10px;
+  border: none;
 }
 
-/* LISTA */
 ul {
   list-style: none;
   padding: 0;
@@ -100,14 +84,7 @@ ul {
 
 li {
   background: white;
-  margin: 5px auto;
+  margin: 5px;
   padding: 10px;
   border-radius: 10px;
-  width: 250px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-/* DETALHE ROMÂNTICO */
-h1, h2 {
-  color: #d4af37;
 }
