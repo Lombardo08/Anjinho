@@ -6,9 +6,8 @@
 }
 
 body {
-  font-family: 'Segoe UI', sans-serif;
-  background: #ffffff;
-  color: #333;
+  font-family: Arial, sans-serif;
+  background: white;
 }
 
 /* HEADER */
@@ -17,16 +16,6 @@ header {
   text-align: center;
   padding: 30px 15px;
   color: white;
-}
-
-header h1 {
-  font-size: 26px;
-  margin-bottom: 10px;
-}
-
-header h2 {
-  font-size: 20px;
-  margin-top: 10px;
 }
 
 /* MENU */
@@ -46,18 +35,12 @@ nav button {
   color: #d4af37;
   font-weight: bold;
   cursor: pointer;
-  transition: 0.3s;
-}
-
-nav button:hover {
-  background: #d4af37;
-  color: white;
 }
 
 /* ABAS */
 .aba {
   display: none;
-  padding: 30px 15px;
+  padding: 25px;
   text-align: center;
   min-height: 70vh;
 }
@@ -66,47 +49,37 @@ nav button:hover {
   display: block;
 }
 
-/* CORES DAS ABAS */
+/* CORES */
 #inicio { background: #ffffff; }
 #mensagens { background: #ffe4ec; }
-#historias { background: #f3e8ff; }
+#momentos { background: #f3e8ff; }
 #jogo { background: #e8ffe8; }
 #tarefas { background: #ffd6e0; }
 
-/* TITULOS */
-h2 {
-  margin-bottom: 15px;
-  color: #d4af37;
-}
-
-/* TEXTO (CARTA) */
+/* TEXTO */
 .texto {
   max-width: 600px;
   margin: 20px auto;
   font-size: 18px;
-  line-height: 1.7;
+  line-height: 1.6;
   background: white;
   padding: 15px;
   border-radius: 15px;
 }
 
 /* CARROSSEL */
-.carrossel {
-  margin-top: 20px;
-}
-
 .carrossel img {
   width: 260px;
   max-width: 90%;
   border-radius: 20px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  margin-top: 20px;
 }
 
 /* VIDEO */
 video {
-  width: 300px;
+  width: 320px;
   max-width: 90%;
-  border-radius: 15px;
+  border-radius: 20px;
   margin-top: 20px;
 }
 
@@ -114,12 +87,10 @@ video {
 #jogo button {
   margin: 10px;
   padding: 12px;
-  border-radius: 12px;
+  border-radius: 10px;
   border: none;
   background: #ff6f91;
   color: white;
-  font-weight: bold;
-  cursor: pointer;
 }
 
 /* INPUT */
@@ -127,27 +98,19 @@ input {
   padding: 10px;
   border-radius: 10px;
   border: 1px solid #ccc;
-  margin-top: 10px;
-  width: 200px;
 }
 
 /* LISTA */
 li {
   background: white;
-  margin: 8px auto;
-  padding: 12px;
+  margin: 5px auto;
+  padding: 10px;
   border-radius: 10px;
   max-width: 300px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 /* RESPONSIVO */
 @media (max-width: 600px) {
-
-  header h1 {
-    font-size: 22px;
-  }
-
   nav {
     flex-direction: column;
     align-items: center;
