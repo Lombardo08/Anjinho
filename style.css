@@ -21,13 +21,12 @@ nav {
 }
 
 nav button {
-  padding: 12px 18px;
+  padding: 12px;
   border-radius: 10px;
   border: 2px solid #d4af37;
   background: white;
   color: #d4af37;
   font-weight: bold;
-  cursor: pointer;
 }
 
 /* ABAS */
@@ -44,17 +43,17 @@ nav button {
 /* CORES */
 #inicio { background: #ffffff; }
 #mensagens { background: #ffe4ec; }
-#tarefas { background: #ffe5e5; }
 #comeco { background: #e0f7fa; }
 #historias { background: #f3e8ff; }
-#direitos { background: #fff3cd; }
+#jogo { background: #e8ffe8; }
+#tarefas { background: #ffd6e0; }
 
-/* CARDS */
+/* CARD */
 .card {
   background: white;
-  margin: 10px auto;
   padding: 15px;
-  border-radius: 12px;
+  margin: 10px auto;
+  border-radius: 10px;
   max-width: 300px;
 }
 
@@ -66,11 +65,6 @@ input {
 }
 
 /* LISTA */
-ul {
-  list-style: none;
-  padding: 0;
-}
-
 li {
   background: white;
   margin: 5px auto;
@@ -82,16 +76,19 @@ li {
 /* CARROSSEL */
 .carrossel-container {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   gap: 10px;
-  margin-top: 20px;
 }
 
 .carrossel {
-  display: flex;
-  overflow: hidden;
   width: 260px;
+  overflow: hidden;
+}
+
+.carrossel-track {
+  display: flex;
+  transition: transform 0.5s ease;
 }
 
 .carrossel img {
@@ -99,25 +96,33 @@ li {
   height: 300px;
   object-fit: cover;
   border-radius: 15px;
-  flex-shrink: 0;
-  transition: 0.5s;
 }
 
-.carrossel-container button {
-  background: #d4af37;
-  color: white;
-  border: none;
-  padding: 10px;
-  border-radius: 50%;
-  cursor: pointer;
+/* FOTO SOBREPOSTA */
+.foto-container {
+  position: relative;
+  width: 250px;
+  margin: auto;
+}
+
+.fundo {
+  width: 100%;
+  border-radius: 15px;
+}
+
+.sobre {
+  position: absolute;
+  bottom: -10px;
+  right: -10px;
+  width: 80px;
+  border-radius: 10px;
+  border: 3px solid white;
 }
 
 /* RESPONSIVO */
 @media (max-width: 600px) {
-
   nav {
     flex-direction: column;
-    align-items: center;
   }
 
   nav button {
