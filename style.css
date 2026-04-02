@@ -1,1 +1,65 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(120deg, #ff9a9e, #fad0c4);
+  text-align: center;
+}
 
+header {
+  background: #ff6f91;
+  color: white;
+  padding: 20px;
+}
+
+nav {
+  margin: 10px;
+}
+
+button {
+  background: #ff6f91;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  margin: 5px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #ff3b6f;
+}
+
+.aba {
+  display: none;
+  padding: 20px;
+}
+
+.ativa {
+  display: block;
+}
+
+.card {
+  background: white;
+  margin: 10px auto;
+  padding: 15px;
+  border-radius: 10px;
+  width: 250px;
+}
+
+input {
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  background: #ffe5ec;
+  margin: 5px;
+  padding: 10px;
+  border-radius: 10px;
+}
