@@ -1,25 +1,23 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- RESPONSIVIDADE -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Para Meu Amor ❤️</title>
-  <link rel="stylesheet" href="style.css">
+<title>Para Meu Amor ❤️</title>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
 <header>
-  <h1><!-- EDITAR AQUI --> Feliz Aniversário meu ANJINHO !</h1>
-  <p><!-- EDITAR AQUI --> Espero que voce goste dessa Lembrança</p>
+  <h1>Feliz Aniversário meu ANJINHO !</h1>
+  <p>Espero que voce goste dessa Lembrança</p>
 
-  <h2><!-- EDITAR AQUI --> Pra você minha NAMOLADA</h2>
-  <p><!-- EDITAR AQUI --> Minha forma de desmonstrar como eu te amo</p>
+  <h2>Pra você minha NAMOLADA</h2>
+  <p>Minha forma de desmonstrar como eu te amo</p>
 </header>
-  
+
 <nav>
   <button onclick="mostrar('inicio')">Início</button>
   <button onclick="mostrar('mensagens')">Mensagens</button>
@@ -30,25 +28,30 @@
 </nav>
 
 <section id="inicio" class="aba ativa">
-  <h2><!-- EDITAR AQUI --> Nosso início 💖</h2>
-  <p><!-- EDITAR AQUI --> Foi aqui que tudo começou...</p>
+  <h2>Nosso início 💖</h2>
+  <p>Foi aqui que tudo começou...</p>
 
-  <!-- CARROSSEL -->
-  <div class="carrossel">
-    <img src="foto1.jpg">
-    <img src="foto2.jpg">
-    <img src="foto3.jpg">
+  <div class="carrossel-container">
+    <button onclick="voltar()">⬅</button>
+
+    <div class="carrossel" id="carrossel">
+      <img src="foto1.jpg">
+      <img src="foto2.jpg">
+      <img src="foto3.jpg">
+    </div>
+
+    <button onclick="avancar()">➡</button>
   </div>
 </section>
 
 <section id="mensagens" class="aba">
-  <div class="card"><!-- EDITAR AQUI --> Você é a melhor parte da minha vida ❤️</div>
-  <div class="card"><!-- EDITAR AQUI --> Eu te amo muito 💖</div>
-  <div class="card"><!-- EDITAR AQUI --> Quero passar minha vida com você 💕</div>
+  <div class="card">Você é a melhor parte da minha vida ❤️</div>
+  <div class="card">Eu te amo muito 💖</div>
+  <div class="card">Quero passar minha vida com você 💕</div>
 </section>
 
 <section id="tarefas" class="aba">
-  <h2><!-- EDITAR AQUI --> Coisas pra gente fazer 💑</h2>
+  <h2>Coisas pra gente fazer 💑</h2>
 
   <input type="text" id="tarefa" placeholder="Digite algo aqui...">
   <button onclick="add()">Adicionar</button>
@@ -57,30 +60,32 @@
 </section>
 
 <section id="comeco" class="aba">
-  <h2><!-- EDITAR AQUI --> Como tudo começou 💕</h2>
-  <p><!-- EDITAR AQUI --> Conte aqui a história de vocês...</p>
+  <h2>Como tudo começou 💕</h2>
+  <p>Conte aqui a história de vocês...</p>
 </section>
 
 <section id="historias" class="aba">
-  <h2><!-- EDITAR AQUI --> Nossas histórias 📖</h2>
-  <p><!-- EDITAR AQUI --> Momentos especiais que viveram juntos...</p>
+  <h2>Nossas histórias 📖</h2>
+  <p>Momentos especiais que viveram juntos...</p>
 </section>
 
 <section id="direitos" class="aba">
-  <h2><!-- EDITAR AQUI --> Seus direitos 😄</h2>
+  <h2>Seus direitos 😄</h2>
   <ul>
-    <li><!-- EDITAR AQUI --> Ser muito amada ❤️</li>
-    <li><!-- EDITAR AQUI --> Receber carinho infinito 💖</li>
-    <li><!-- EDITAR AQUI --> Ganhar muitos beijos 😘</li>
+    <li>Ser muito amada ❤️</li>
+    <li>Receber carinho infinito 💖</li>
+    <li>Ganhar muitos beijos 😘</li>
   </ul>
 </section>
 
 <script>
+// ABAS
 function mostrar(id) {
   document.querySelectorAll('.aba').forEach(el => el.classList.remove('ativa'));
   document.getElementById(id).classList.add('ativa');
 }
 
+// TAREFAS
 function add() {
   let input = document.getElementById("tarefa");
 
@@ -90,9 +95,30 @@ function add() {
   li.textContent = input.value;
 
   document.getElementById("lista").appendChild(li);
-
   input.value = "";
 }
+
+// CARROSSEL
+let index = 0;
+
+function atualizar() {
+  const carrossel = document.getElementById("carrossel");
+  carrossel.style.transform = `translateX(-${index * 260}px)`;
+}
+
+function avancar() {
+  const total = document.querySelectorAll("#carrossel img").length;
+  index = (index + 1) % total;
+  atualizar();
+}
+
+function voltar() {
+  const total = document.querySelectorAll("#carrossel img").length;
+  index = (index - 1 + total) % total;
+  atualizar();
+}
+
+setInterval(avancar, 3000);
 </script>
 
 </body>
