@@ -7,153 +7,116 @@
 <title>Para Meu Amor ❤️</title>
 
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: Arial;
-}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: Arial; }
 
 /* HEADER */
 header {
   background: linear-gradient(135deg, #d4af37, #f5e6a8);
-  text-align: center;
-  padding: 20px;
-  color: white;
+  text-align:center;
+  padding:20px;
+  color:white;
 }
 
 /* MENU */
 nav {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-  padding: 10px;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:10px;
+  padding:10px;
 }
 
 nav button {
-  padding: 10px;
-  border-radius: 20px;
-  border: 2px solid #d4af37;
-  background: white;
-  color: #d4af37;
-  font-weight: bold;
+  padding:10px;
+  border-radius:20px;
+  border:2px solid #d4af37;
+  background:white;
+  color:#d4af37;
+  font-weight:bold;
 }
 
-#btnSim {
-  opacity: 0.5;
-}
+#btnSim { opacity:0.5; }
 
 /* ABAS */
-.aba {
-  display: none;
-  padding: 20px;
-  text-align: center;
-}
-
-.ativa {
-  display: block;
-}
+.aba { display:none; padding:20px; text-align:center; }
+.ativa { display:block; }
 
 /* CORES */
-#mensagens { background: #ffe4ec; }
-#momentos { background: #f3e8ff; }
-#jogo { background: #e8ffe8; }
-#tarefas { background: #ffd6e0; }
+#mensagens { background:#ffe4ec; }
+#momentos { background:#f3e8ff; }
+#jogo { background:#e8ffe8; }
+#tarefas { background:#ffd6e0; }
 
 /* CARROSSEL */
 .carrossel img {
-  width: 250px;
-  border-radius: 15px;
-  margin-top: 20px;
+  width:250px;
+  border-radius:15px;
+  margin-top:20px;
 }
 
 /* QUIZ */
 #jogo button {
-  margin: 10px;
-  padding: 12px 20px;
-  border-radius: 10px;
-  border: none;
-  background: #ff6f91;
-  color: white;
-  font-size: 16px;
-  transition: 0.3s;
+  margin:10px;
+  padding:12px 20px;
+  border-radius:10px;
+  border:none;
+  background:#ff6f91;
+  color:white;
+  font-size:16px;
+  transition:0.3s;
 }
 
-/* TEXTO */
 #pergunta {
-  font-size: 22px;
-  margin: 15px;
-  font-weight: bold;
+  font-size:22px;
+  margin:15px;
+  font-weight:bold;
 }
 
 #resultado {
-  font-size: 18px;
-  margin-top: 10px;
+  font-size:18px;
+  margin-top:10px;
 }
 
 /* VIDEO */
 video {
-  width: 300px;
-  border-radius: 15px;
+  width:300px;
+  border-radius:15px;
 }
 
-/* LISTA SIM */
-#tarefas input {
-  padding: 10px;
-  border-radius: 10px;
-  margin-top: 10px;
-}
-
-#tarefas button {
-  padding: 10px;
-  margin-left: 5px;
-  border-radius: 10px;
-  background: #ff6f91;
-  color: white;
-  border: none;
-}
-
+/* LISTA */
 #lista li {
-  margin: 8px auto;
-  background: white;
-  padding: 10px;
-  border-radius: 10px;
-  max-width: 300px;
+  margin:8px auto;
+  background:white;
+  padding:10px;
+  border-radius:10px;
+  max-width:300px;
 }
 
 /* ANIMAÇÕES */
-.fade {
-  opacity: 0;
-  transition: 0.4s;
-}
+.fade { opacity:0; transition:0.4s; }
 
 .acerto {
-  background: #4CAF50 !important;
-  transform: scale(1.1);
+  background:#4CAF50 !important;
+  transform:scale(1.1);
 }
 
 .erro {
-  background: #ff4d4d !important;
-  transform: scale(1.1);
+  background:#ff4d4d !important;
+  transform:scale(1.1);
 }
 
 .desbloqueado {
   animation: brilho 1s infinite alternate;
-  background: #ff6f91 !important;
-  color: white !important;
-  transform: scale(1.1);
+  background:#ff6f91 !important;
+  color:white !important;
 }
 
 @keyframes brilho {
-  from { box-shadow: 0 0 5px #ff6f91; }
-  to { box-shadow: 0 0 20px #ff6f91; }
+  from { box-shadow:0 0 5px #ff6f91; }
+  to { box-shadow:0 0 20px #ff6f91; }
 }
 </style>
-
 </head>
 
 <body>
@@ -189,7 +152,6 @@ video {
 
 <section id="jogo" class="aba">
   <h2>Quiz 😏</h2>
-
   <p>Pontos: <span id="pontos">0</span>/7</p>
 
   <p id="pergunta"></p>
@@ -211,8 +173,8 @@ video {
 
 <script>
 // ABAS
-function mostrar(id) {
-  document.querySelectorAll('.aba').forEach(e => e.classList.remove('ativa'));
+function mostrar(id){
+  document.querySelectorAll('.aba').forEach(e=>e.classList.remove('ativa'));
   document.getElementById(id).classList.add('ativa');
 }
 
@@ -222,13 +184,13 @@ const fotos = [
  "foto6.jpg","foto7.jpg","foto8.jpg","foto9.jpg","foto10.jpg"
 ];
 
-let i = 0;
+let i=0;
 setInterval(()=>{
-  i = (i+1) % fotos.length;
-  document.getElementById("slide").src = fotos[i];
+  i=(i+1)%fotos.length;
+  slide.src=fotos[i];
 },2000);
 
-// QUIZ (CONTROLADO)
+// QUIZ
 const quiz = [
  { pergunta:"Quem ama mais?", opcoes:["Você","Eu"], correta:0 },
  { pergunta:"Quem é mais lindo?", opcoes:["Você","Eu"], correta:0 },
@@ -239,10 +201,9 @@ const quiz = [
  { pergunta:"Quem é mais apaixonado?", opcoes:["Você","Eu"], correta:1 }
 ];
 
-let atual = 0;
-let pontos = 0;
-let desbloqueado = false;
-let corretaAtual = 0;
+let atual=0;
+let pontos=0;
+let desbloqueado=false;
 
 const perguntaEl = document.getElementById("pergunta");
 const btn1 = document.getElementById("btn1");
@@ -250,71 +211,73 @@ const btn2 = document.getElementById("btn2");
 const resultado = document.getElementById("resultado");
 const pontosEl = document.getElementById("pontos");
 
-// animação troca
-function animarTroca() {
+// animação
+function animarTroca(){
   perguntaEl.classList.add("fade");
-  setTimeout(() => perguntaEl.classList.remove("fade"), 400);
+  setTimeout(()=>perguntaEl.classList.remove("fade"),400);
 }
 
+// carregar pergunta
 function carregarPergunta(){
   let q = quiz[atual];
 
   animarTroca();
   perguntaEl.innerText = q.pergunta;
 
-  corretaAtual = Math.floor(Math.random()*2);
-
-  if(corretaAtual === 0){
-    btn1.innerText = q.opcoes[q.correta];
-    btn2.innerText = q.opcoes[1 - q.correta];
+  // embaralha VISUAL apenas
+  if(Math.random()<0.5){
+    btn1.innerText = q.opcoes[0];
+    btn2.innerText = q.opcoes[1];
   } else {
-    btn1.innerText = q.opcoes[1 - q.correta];
-    btn2.innerText = q.opcoes[q.correta];
+    btn1.innerText = q.opcoes[1];
+    btn2.innerText = q.opcoes[0];
   }
 
-  resultado.innerText = "";
+  resultado.innerText="";
 }
 
-function efeitoBotao(btn, tipo) {
+// efeito botão
+function efeitoBotao(btn,tipo){
   btn.classList.add(tipo);
-  setTimeout(() => btn.classList.remove(tipo), 500);
+  setTimeout(()=>btn.classList.remove(tipo),500);
 }
 
+// RESPOSTA BASEADA NO TEXTO
 function responder(escolha){
-  if(escolha === corretaAtual){
+  let respostaEscolhida = escolha===0 ? btn1.innerText : btn2.innerText;
+  let respostaCorreta = quiz[atual].opcoes[quiz[atual].correta];
+
+  if(respostaEscolhida === respostaCorreta){
     pontos++;
-    resultado.innerText = "Acertou 😏💖";
-    efeitoBotao(escolha === 0 ? btn1 : btn2, "acerto");
+    resultado.innerText="Acertou 😏💖";
+    efeitoBotao(escolha===0?btn1:btn2,"acerto");
   } else {
-    resultado.innerText = "Errou 😄";
-    efeitoBotao(escolha === 0 ? btn1 : btn2, "erro");
+    resultado.innerText="Errou 😄";
+    efeitoBotao(escolha===0?btn1:btn2,"erro");
   }
 
-  pontosEl.innerText = pontos;
-
+  pontosEl.innerText=pontos;
   atual++;
 
-  if(atual < quiz.length){
-    setTimeout(carregarPergunta, 1200);
+  if(atual<quiz.length){
+    setTimeout(carregarPergunta,1200);
   } else {
-    setTimeout(() => {
-      if(pontos >= 5){
+    setTimeout(()=>{
+      if(pontos>=5){
         desbloquear();
-        resultado.innerText = "Desbloqueado 💖";
+        resultado.innerText="Desbloqueado 💖";
       } else {
-        resultado.innerText = "Tente novamente 😄";
+        resultado.innerText="Tente novamente 😄";
       }
-    }, 1200);
+    },1200);
   }
 }
 
 function desbloquear(){
-  desbloqueado = true;
-  const btnSim = document.getElementById("btnSim");
-
-  btnSim.innerText = "💖 SIM 💖";
+  desbloqueado=true;
+  btnSim.innerText="💖 SIM 💖";
   btnSim.classList.add("desbloqueado");
-  btnSim.style.opacity = "1";
+  btnSim.style.opacity="1";
 }
 
 function abrirSim(){
@@ -327,33 +290,31 @@ function abrirSim(){
 
 carregarPergunta();
 
-// LISTA (SIM)
-let listaItens = [];
+// LISTA
+let listaItens=[];
 
-function add() {
-  let input = document.getElementById("tarefa");
+function add(){
+  let input=document.getElementById("tarefa");
 
-  if(input.value === "") return;
+  if(input.value==="") return;
 
-  if(listaItens.length >= 5) {
+  if(listaItens.length>=5){
     alert("Só pode até 5 😏💖");
     return;
   }
 
   listaItens.push(input.value);
-
   atualizarLista();
-
-  input.value = "";
+  input.value="";
 }
 
-function atualizarLista() {
-  const ul = document.getElementById("lista");
-  ul.innerHTML = "";
+function atualizarLista(){
+  let ul=document.getElementById("lista");
+  ul.innerHTML="";
 
-  listaItens.forEach(item => {
-    let li = document.createElement("li");
-    li.textContent = item;
+  listaItens.forEach(item=>{
+    let li=document.createElement("li");
+    li.textContent=item;
     ul.appendChild(li);
   });
 }
