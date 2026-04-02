@@ -1,7 +1,6 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #fff;
 }
 
 /* HEADER */
@@ -15,8 +14,8 @@ header {
 /* MENU */
 nav {
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 10px;
   padding: 10px;
 }
@@ -31,11 +30,6 @@ nav button {
   cursor: pointer;
 }
 
-nav button:hover {
-  background: #d4af37;
-  color: white;
-}
-
 /* ABAS */
 .aba {
   display: none;
@@ -47,7 +41,7 @@ nav button:hover {
   display: block;
 }
 
-/* CORES DAS ABAS */
+/* CORES */
 #inicio { background: #ffffff; }
 #mensagens { background: #ffe4ec; }
 #tarefas { background: #ffe5e5; }
@@ -86,17 +80,36 @@ li {
 }
 
 /* CARROSSEL */
-.carrossel {
+.carrossel-container {
   display: flex;
-  overflow-x: auto;
+  align-items: center;
+  justify-content: center;
   gap: 10px;
   margin-top: 20px;
-  padding: 10px;
+}
+
+.carrossel {
+  display: flex;
+  overflow: hidden;
+  width: 260px;
 }
 
 .carrossel img {
-  width: 250px;
+  width: 260px;
+  height: 300px;
+  object-fit: cover;
   border-radius: 15px;
+  flex-shrink: 0;
+  transition: 0.5s;
+}
+
+.carrossel-container button {
+  background: #d4af37;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
 }
 
 /* RESPONSIVO */
@@ -112,6 +125,7 @@ li {
   }
 
   .carrossel img {
-    width: 80%;
+    width: 220px;
+    height: 280px;
   }
 }
