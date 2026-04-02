@@ -101,6 +101,30 @@ video {
   border-radius: 15px;
 }
 
+/* LISTA SIM */
+#tarefas input {
+  padding: 10px;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+#tarefas button {
+  padding: 10px;
+  margin-left: 5px;
+  border-radius: 10px;
+  background: #ff6f91;
+  color: white;
+  border: none;
+}
+
+#lista li {
+  margin: 8px auto;
+  background: white;
+  padding: 10px;
+  border-radius: 10px;
+  max-width: 300px;
+}
+
 /* ANIMAÇÕES */
 .fade {
   opacity: 0;
@@ -146,7 +170,6 @@ video {
   <button id="btnSim" onclick="abrirSim()">🔒 SIM 💖</button>
 </nav>
 
-<!-- INICIO -->
 <section id="inicio" class="aba ativa">
   <h2>Nosso início 💖</h2>
   <div class="carrossel">
@@ -154,19 +177,16 @@ video {
   </div>
 </section>
 
-<!-- MENSAGEM -->
 <section id="mensagens" class="aba">
   <p>Escreva aqui sua mensagem ❤️</p>
 </section>
 
-<!-- MOMENTOS -->
 <section id="momentos" class="aba">
   <video controls>
     <source src="video.mp4">
   </video>
 </section>
 
-<!-- QUIZ -->
 <section id="jogo" class="aba">
   <h2>Quiz 😏</h2>
 
@@ -180,9 +200,13 @@ video {
   <p id="resultado"></p>
 </section>
 
-<!-- SIM -->
 <section id="tarefas" class="aba">
   <h2>SIM 💖</h2>
+
+  <input type="text" id="tarefa" placeholder="Escreve algo aqui ❤️">
+  <button onclick="add()">Adicionar</button>
+
+  <ul id="lista"></ul>
 </section>
 
 <script>
@@ -204,15 +228,15 @@ setInterval(()=>{
   document.getElementById("slide").src = fotos[i];
 },2000);
 
-// QUIZ
+// QUIZ (CONTROLADO)
 const quiz = [
  { pergunta:"Quem ama mais?", opcoes:["Você","Eu"], correta:0 },
  { pergunta:"Quem é mais lindo?", opcoes:["Você","Eu"], correta:0 },
- { pergunta:"Quem sente mais saudade?", opcoes:["Você","Eu"], correta:0 },
+ { pergunta:"Quem sente mais saudade?", opcoes:["Você","Eu"], correta:1 },
  { pergunta:"Quem é mais grudado?", opcoes:["Você","Eu"], correta:0 },
- { pergunta:"Quem é o amor da vida?", opcoes:["Você","Eu"], correta:0 },
+ { pergunta:"Quem é o amor da vida?", opcoes:["Você","Eu"], correta:1 },
  { pergunta:"Quem pensa mais no outro?", opcoes:["Você","Eu"], correta:0 },
- { pergunta:"Quem é mais apaixonado?", opcoes:["Você","Eu"], correta:0 }
+ { pergunta:"Quem é mais apaixonado?", opcoes:["Você","Eu"], correta:1 }
 ];
 
 let atual = 0;
@@ -229,16 +253,13 @@ const pontosEl = document.getElementById("pontos");
 // animação troca
 function animarTroca() {
   perguntaEl.classList.add("fade");
-  setTimeout(() => {
-    perguntaEl.classList.remove("fade");
-  }, 400);
+  setTimeout(() => perguntaEl.classList.remove("fade"), 400);
 }
 
 function carregarPergunta(){
   let q = quiz[atual];
 
   animarTroca();
-
   perguntaEl.innerText = q.pergunta;
 
   corretaAtual = Math.floor(Math.random()*2);
@@ -254,12 +275,9 @@ function carregarPergunta(){
   resultado.innerText = "";
 }
 
-// efeito clique
 function efeitoBotao(btn, tipo) {
   btn.classList.add(tipo);
-  setTimeout(() => {
-    btn.classList.remove(tipo);
-  }, 500);
+  setTimeout(() => btn.classList.remove(tipo), 500);
 }
 
 function responder(escolha){
@@ -308,6 +326,37 @@ function abrirSim(){
 }
 
 carregarPergunta();
+
+// LISTA (SIM)
+let listaItens = [];
+
+function add() {
+  let input = document.getElementById("tarefa");
+
+  if(input.value === "") return;
+
+  if(listaItens.length >= 5) {
+    alert("Só pode até 5 😏💖");
+    return;
+  }
+
+  listaItens.push(input.value);
+
+  atualizarLista();
+
+  input.value = "";
+}
+
+function atualizarLista() {
+  const ul = document.getElementById("lista");
+  ul.innerHTML = "";
+
+  listaItens.forEach(item => {
+    let li = document.createElement("li");
+    li.textContent = item;
+    ul.appendChild(li);
+  });
+}
 </script>
 
 </body>
