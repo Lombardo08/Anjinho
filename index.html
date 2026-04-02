@@ -21,7 +21,7 @@
 <nav>
   <button onclick="mostrar('inicio')">Início</button>
   <button onclick="mostrar('mensagens')">Mensagens</button>
-  <button onclick="mostrar('historias')">Histórias</button>
+  <button onclick="mostrar('momentos')">Momentos</button>
   <button onclick="mostrar('jogo')">Quiz 💖</button>
   <button onclick="mostrar('tarefas')">SIM 💖</button>
 </nav>
@@ -41,15 +41,16 @@
   <h2>💌 Uma mensagem pra você</h2>
 
   <p class="texto">
-    Aqui você escreve sua carta ❤️
+    <!-- ESCREVA SUA MENSAGEM AQUI -->
+    Você é a melhor coisa da minha vida ❤️
   </p>
 </section>
 
-<!-- VIDEO -->
-<section id="historias" class="aba">
+<!-- MOMENTOS -->
+<section id="momentos" class="aba">
   <h2>Nossos momentos 📸</h2>
 
-  <video controls>
+  <video controls autoplay muted loop>
     <source src="video.mp4" type="video/mp4">
   </video>
 </section>
@@ -58,10 +59,10 @@
 <section id="jogo" class="aba">
   <h2>Quiz sobre nós 😏</h2>
 
-  <p id="pergunta">Quem ama mais?</p>
+  <p id="pergunta"></p>
 
-  <button onclick="responder('vc')">Você</button>
-  <button onclick="responder('eu')">Eu</button>
+  <button onclick="responder(0)" id="btn1"></button>
+  <button onclick="responder(1)" id="btn2"></button>
 
   <p id="resultado"></p>
 </section>
@@ -83,27 +84,59 @@ function mostrar(id) {
   document.getElementById(id).classList.add('ativa');
 }
 
-// CARROSSEL LEVE
-const fotos = ["foto1.jpg", "foto2.jpg", "foto3.jpg"];
+// CARROSSEL (10 FOTOS)
+const fotos = [
+  "foto1.jpg","foto2.jpg","foto3.jpg","foto4.jpg","foto5.jpg",
+  "foto6.jpg","foto7.jpg","foto8.jpg","foto9.jpg","foto10.jpg"
+];
+
 let i = 0;
 
 setInterval(() => {
   i = (i + 1) % fotos.length;
   document.getElementById("slide").src = fotos[i];
-}, 2500);
+}, 2000);
 
-// QUIZ
-function responder(r) {
-  let res = document.getElementById("resultado");
+// QUIZ (EDITÁVEL)
+const quiz = [
+  { pergunta: "Quem ama mais?", opcoes: ["Você", "Eu"], correta: 0 },
+  { pergunta: "Quem é mais lindo?", opcoes: ["Você", "Eu"], correta: 0 },
+  { pergunta: "Quem sente mais saudade?", opcoes: ["Você", "Eu"], correta: 0 },
+  { pergunta: "Quem é mais grudado?", opcoes: ["Você", "Eu"], correta: 0 },
+  { pergunta: "Quem é o amor da vida?", opcoes: ["Você", "Eu"], correta: 0 }
+];
 
-  if(r === "vc") {
-    res.innerText = "Acertou 😏💖";
+let atual = 0;
+
+function carregarPergunta() {
+  document.getElementById("pergunta").innerText = quiz[atual].pergunta;
+  document.getElementById("btn1").innerText = quiz[atual].opcoes[0];
+  document.getElementById("btn2").innerText = quiz[atual].opcoes[1];
+  document.getElementById("resultado").innerText = "";
+}
+
+function responder(escolha) {
+  if(escolha === quiz[atual].correta) {
+    document.getElementById("resultado").innerText = "Acertou 😏💖";
   } else {
-    res.innerText = "Errado 😄 eu amo mais!";
+    document.getElementById("resultado").innerText = "Errou 😄";
+  }
+
+  atual++;
+
+  if(atual < quiz.length) {
+    setTimeout(carregarPergunta, 1500);
+  } else {
+    setTimeout(() => {
+      document.getElementById("pergunta").innerText = "Fim 😍";
+      document.getElementById("resultado").innerText = "Você é perfeita ❤️";
+    }, 1500);
   }
 }
 
-// LISTA
+carregarPergunta();
+
+// LISTA (SIM)
 function add() {
   let input = document.getElementById("tarefa");
 
