@@ -6,16 +6,27 @@
 }
 
 body {
-  font-family: Arial, sans-serif;
-  background: white;
+  font-family: 'Segoe UI', sans-serif;
+  background: #ffffff;
+  color: #333;
 }
 
 /* HEADER */
 header {
   background: linear-gradient(135deg, #d4af37, #f5e6a8);
   text-align: center;
-  padding: 20px;
+  padding: 30px 15px;
   color: white;
+}
+
+header h1 {
+  font-size: 26px;
+  margin-bottom: 10px;
+}
+
+header h2 {
+  font-size: 20px;
+  margin-top: 10px;
 }
 
 /* MENU */
@@ -24,13 +35,13 @@ nav {
   justify-content: center;
   flex-wrap: wrap;
   gap: 10px;
-  padding: 10px;
+  padding: 15px;
 }
 
 nav button {
   padding: 12px 18px;
-  border-radius: 20px;
-  border: 1px solid #d4af37;
+  border-radius: 25px;
+  border: 2px solid #d4af37;
   background: white;
   color: #d4af37;
   font-weight: bold;
@@ -46,7 +57,7 @@ nav button:hover {
 /* ABAS */
 .aba {
   display: none;
-  padding: 25px;
+  padding: 30px 15px;
   text-align: center;
   min-height: 70vh;
 }
@@ -55,28 +66,40 @@ nav button:hover {
   display: block;
 }
 
-/* CORES */
+/* CORES DAS ABAS */
 #inicio { background: #ffffff; }
 #mensagens { background: #ffe4ec; }
 #historias { background: #f3e8ff; }
 #jogo { background: #e8ffe8; }
 #tarefas { background: #ffd6e0; }
 
-/* TEXTO */
+/* TITULOS */
+h2 {
+  margin-bottom: 15px;
+  color: #d4af37;
+}
+
+/* TEXTO (CARTA) */
 .texto {
   max-width: 600px;
   margin: 20px auto;
   font-size: 18px;
-  line-height: 1.6;
+  line-height: 1.7;
+  background: white;
+  padding: 15px;
+  border-radius: 15px;
 }
 
 /* CARROSSEL */
+.carrossel {
+  margin-top: 20px;
+}
+
 .carrossel img {
   width: 260px;
   max-width: 90%;
-  border-radius: 15px;
-  margin-top: 20px;
-  transition: 0.5s;
+  border-radius: 20px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
 /* VIDEO */
@@ -91,10 +114,11 @@ video {
 #jogo button {
   margin: 10px;
   padding: 12px;
-  border-radius: 10px;
+  border-radius: 12px;
   border: none;
   background: #ff6f91;
   color: white;
+  font-weight: bold;
   cursor: pointer;
 }
 
@@ -104,19 +128,25 @@ input {
   border-radius: 10px;
   border: 1px solid #ccc;
   margin-top: 10px;
+  width: 200px;
 }
 
 /* LISTA */
 li {
   background: white;
-  margin: 5px auto;
-  padding: 10px;
+  margin: 8px auto;
+  padding: 12px;
   border-radius: 10px;
   max-width: 300px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 /* RESPONSIVO */
 @media (max-width: 600px) {
+
+  header h1 {
+    font-size: 22px;
+  }
 
   nav {
     flex-direction: column;
